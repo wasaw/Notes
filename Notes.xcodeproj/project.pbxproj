@@ -19,6 +19,13 @@
 		BB745EC82B68ED7800BD016A /* HomeAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB745EC72B68ED7800BD016A /* HomeAssembly.swift */; };
 		BB745ECA2B68F5A500BD016A /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB745EC92B68F5A500BD016A /* HomeCell.swift */; };
 		BB745ECD2B68F82F00BD016A /* HomeDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB745ECC2B68F82F00BD016A /* HomeDataSource.swift */; };
+		BB745ED22B6914C700BD016A /* NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB745ED12B6914C700BD016A /* NoteViewController.swift */; };
+		BB745ED42B6914F000BD016A /* NoteInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB745ED32B6914F000BD016A /* NoteInput.swift */; };
+		BB745ED62B69150100BD016A /* NoteOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB745ED52B69150100BD016A /* NoteOutput.swift */; };
+		BB745ED82B69151400BD016A /* NotePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB745ED72B69151400BD016A /* NotePresenter.swift */; };
+		BB745EDB2B6915A000BD016A /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB745EDA2B6915A000BD016A /* HomeCoordinator.swift */; };
+		BB745EDD2B69161A00BD016A /* HomePresenterOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB745EDC2B69161A00BD016A /* HomePresenterOutput.swift */; };
+		BB745EDF2B691B9900BD016A /* NoteAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB745EDE2B691B9900BD016A /* NoteAssembly.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +43,13 @@
 		BB745EC72B68ED7800BD016A /* HomeAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAssembly.swift; sourceTree = "<group>"; };
 		BB745EC92B68F5A500BD016A /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
 		BB745ECC2B68F82F00BD016A /* HomeDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDataSource.swift; sourceTree = "<group>"; };
+		BB745ED12B6914C700BD016A /* NoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewController.swift; sourceTree = "<group>"; };
+		BB745ED32B6914F000BD016A /* NoteInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteInput.swift; sourceTree = "<group>"; };
+		BB745ED52B69150100BD016A /* NoteOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteOutput.swift; sourceTree = "<group>"; };
+		BB745ED72B69151400BD016A /* NotePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotePresenter.swift; sourceTree = "<group>"; };
+		BB745EDA2B6915A000BD016A /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
+		BB745EDC2B69161A00BD016A /* HomePresenterOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenterOutput.swift; sourceTree = "<group>"; };
+		BB745EDE2B691B9900BD016A /* NoteAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteAssembly.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +84,7 @@
 			children = (
 				BB745EB72B68EBEB00BD016A /* App */,
 				BB745EC62B68ED6800BD016A /* Assembly */,
+				BB745ED92B69158E00BD016A /* Coordinator */,
 				BB745EB62B68EBD300BD016A /* Presentation */,
 				BB745EB82B68EC1600BD016A /* Utils */,
 				BB745EB02B68E78900BD016A /* Info.plist */,
@@ -81,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				BB745EBD2B68EC4600BD016A /* Home */,
+				BB745ECE2B6914A600BD016A /* Note */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -119,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				BB745EC42B68ECAD00BD016A /* HomePresenter.swift */,
+				BB745EDC2B69161A00BD016A /* HomePresenterOutput.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -137,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				BB745EC72B68ED7800BD016A /* HomeAssembly.swift */,
+				BB745EDE2B691B9900BD016A /* NoteAssembly.swift */,
 			);
 			path = Assembly;
 			sourceTree = "<group>";
@@ -147,6 +165,41 @@
 				BB745ECC2B68F82F00BD016A /* HomeDataSource.swift */,
 			);
 			path = DataSource;
+			sourceTree = "<group>";
+		};
+		BB745ECE2B6914A600BD016A /* Note */ = {
+			isa = PBXGroup;
+			children = (
+				BB745ED02B6914B700BD016A /* Presenter */,
+				BB745ECF2B6914B400BD016A /* View */,
+			);
+			path = Note;
+			sourceTree = "<group>";
+		};
+		BB745ECF2B6914B400BD016A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BB745ED12B6914C700BD016A /* NoteViewController.swift */,
+				BB745ED32B6914F000BD016A /* NoteInput.swift */,
+				BB745ED52B69150100BD016A /* NoteOutput.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BB745ED02B6914B700BD016A /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				BB745ED72B69151400BD016A /* NotePresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		BB745ED92B69158E00BD016A /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				BB745EDA2B6915A000BD016A /* HomeCoordinator.swift */,
+			);
+			path = Coordinator;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,15 +272,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB745ED42B6914F000BD016A /* NoteInput.swift in Sources */,
 				BB745EC82B68ED7800BD016A /* HomeAssembly.swift in Sources */,
+				BB745EDB2B6915A000BD016A /* HomeCoordinator.swift in Sources */,
 				BB745EBF2B68EC6900BD016A /* HomeViewController.swift in Sources */,
+				BB745ED62B69150100BD016A /* NoteOutput.swift in Sources */,
 				BB745EC12B68EC7900BD016A /* HomeInput.swift in Sources */,
+				BB745EDD2B69161A00BD016A /* HomePresenterOutput.swift in Sources */,
+				BB745ED22B6914C700BD016A /* NoteViewController.swift in Sources */,
 				BB745EC32B68EC9E00BD016A /* HomeOutput.swift in Sources */,
 				BB745EA32B68E78700BD016A /* AppDelegate.swift in Sources */,
 				BB745ECD2B68F82F00BD016A /* HomeDataSource.swift in Sources */,
 				BB745EA52B68E78700BD016A /* SceneDelegate.swift in Sources */,
 				BB745EBA2B68EC2200BD016A /* Extensions.swift in Sources */,
+				BB745EDF2B691B9900BD016A /* NoteAssembly.swift in Sources */,
 				BB745ECA2B68F5A500BD016A /* HomeCell.swift in Sources */,
+				BB745ED82B69151400BD016A /* NotePresenter.swift in Sources */,
 				BB745EC52B68ECAD00BD016A /* HomePresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

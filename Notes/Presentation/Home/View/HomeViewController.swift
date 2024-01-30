@@ -12,6 +12,8 @@ private enum Constants {
     static let titlePaddingTop: CGFloat = 25
     static let tablePaddingTop: CGFloat = 10
     static let cellHeight: CGFloat = 55
+    static let buttonPadding: CGFloat = 22
+    static let buttonDimensions: CGFloat = 55
 }
 
 final class HomeViewController: UIViewController {
@@ -31,6 +33,12 @@ final class HomeViewController: UIViewController {
     private lazy var loadingView: UIActivityIndicatorView = {
         let view = UIActivityIndicatorView()
         return view
+    }()
+    private lazy var addButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.setImage(UIImage(named: "addButton"), for: .normal)
+        button.addTarget(self, action: #selector(handleAddButton), for: .touchUpInside)
+        return button
     }()
     
 // MARK: - Lifecycle
@@ -63,6 +71,7 @@ final class HomeViewController: UIViewController {
                           paddingTop: Constants.titlePaddingTop,
                           paddingTrailing: -Constants.paddingHorizontal)
         configureTable()
+        configureAddButton()
         view.backgroundColor = .background
     }
     
@@ -83,6 +92,16 @@ final class HomeViewController: UIViewController {
         loadingView.anchor(top: tableView.topAnchor)
         tableView.backgroundColor = .background
     }
+    
+    private func configureAddButton() {
+        view.addSubview(addButton)
+        addButton.anchor(trailing: view.trailingAnchor,
+                         bottom: view.safeAreaLayoutGuide.bottomAnchor,
+                         paddingTrailing: -Constants.buttonPadding,
+                         paddingBottom: -Constants.buttonPadding,
+                         width: Constants.buttonDimensions,
+                         height: Constants.buttonDimensions)
+    }
         
     private func setupDataSource(_ items: [HomeCell.DisplayData]) {
         var snapshot = dataSource.snapshot()
@@ -90,6 +109,12 @@ final class HomeViewController: UIViewController {
         snapshot.appendSections([0])
         snapshot.appendItems(items)
         dataSource.apply(snapshot, animatingDifferences: false)
+    }
+    
+// MARK: - Selectors
+    
+    @objc private func handleAddButton() {
+        output.createNewNote()
     }
 }
 
