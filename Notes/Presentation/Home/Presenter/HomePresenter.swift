@@ -12,10 +12,15 @@ final class HomePresenter {
 // MARK: - Properties
     
     weak var input: HomeInput?
+    private let displayData: [HomeCell.DisplayData] = [HomeCell.DisplayData(title: "New title", note: "Note")]
 }
 
 // MARK: - HomeOutput
 
 extension HomePresenter: HomeOutput {
-    
+    func viewIsReady() {
+        input?.setLoading(enable: true)
+        input?.showData(displayData)
+        input?.setLoading(enable: false)
+    }
 }

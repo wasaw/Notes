@@ -7,11 +7,31 @@
 
 import UIKit
 
+private enum Constants {
+    static let paddingHorizontal: CGFloat = 15
+    static let titlePaddingTop: CGFloat = 25
+    static let tablePaddingTop: CGFloat = 10
+    static let cellHeight: CGFloat = 55
+}
+
 final class HomeViewController: UIViewController {
     
 // MARK: - Properties
     
     private let output: HomeOutput
+    
+    private lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Notes"
+        label.font = UIFont.boldSystemFont(ofSize: 37)
+        return label
+    }()
+    private lazy var tableView = UITableView(frame: .zero)
+    private lazy var dataSource = HomeDataSource(tableView)
+    private lazy var loadingView: UIActivityIndicatorView = {
+        let view = UIActivityIndicatorView()
+        return view
+    }()
     
 // MARK: - Lifecycle
     
@@ -28,12 +48,71 @@ final class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .yellow
+        configureUI()
+        output.viewIsReady()
+    }
+    
+// MARK: - Helpers
+    
+    private func configureUI() {
+        view.addSubview(titleLabel)
+        titleLabel.anchor(leading: view.leadingAnchor,
+                          top: view.safeAreaLayoutGuide.topAnchor,
+                          trailing: view.trailingAnchor,
+                          paddingLeading: Constants.paddingHorizontal,
+                          paddingTop: Constants.titlePaddingTop,
+                          paddingTrailing: -Constants.paddingHorizontal)
+        configureTable()
+        view.backgroundColor = .background
+    }
+    
+    private func configureTable() {
+        view.addSubview(tableView)
+        tableView.register(HomeCell.self, forCellReuseIdentifier: HomeCell.reuseIdentifire)
+        tableView.delegate = self
+        tableView.dataSource = dataSource
+        tableView.anchor(leading: view.leadingAnchor,
+                         top: titleLabel.bottomAnchor,
+                         trailing: view.trailingAnchor,
+                         bottom: view.safeAreaLayoutGuide.bottomAnchor,
+                         paddingLeading: Constants.paddingHorizontal,
+                         paddingTop: Constants.tablePaddingTop,
+                         paddingTrailing: -Constants.paddingHorizontal)
+        tableView.addSubview(loadingView)
+        loadingView.centerXAnchor.constraint(equalTo: tableView.centerXAnchor).isActive = true
+        loadingView.anchor(top: tableView.topAnchor)
+        tableView.backgroundColor = .background
+    }
+        
+    private func setupDataSource(_ items: [HomeCell.DisplayData]) {
+        var snapshot = dataSource.snapshot()
+        snapshot.deleteAllItems()
+        snapshot.appendSections([0])
+        snapshot.appendItems(items)
+        dataSource.apply(snapshot, animatingDifferences: false)
     }
 }
 
 // MARK: - HomeInput
 
 extension HomeViewController: HomeInput {
+    func setLoading(enable: Bool) {
+        enable ? loadingView.startAnimating() : loadingView.stopAnimating()
+    }
     
+    func showData(_ data: [HomeCell.DisplayData]) {
+        setupDataSource(data)
+    }
+}
+
+// MARK: - UITableViewDelegate
+
+extension HomeViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        Constants.cellHeight
+    }
 }

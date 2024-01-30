@@ -17,6 +17,8 @@
 		BB745EC32B68EC9E00BD016A /* HomeOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB745EC22B68EC9E00BD016A /* HomeOutput.swift */; };
 		BB745EC52B68ECAD00BD016A /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB745EC42B68ECAD00BD016A /* HomePresenter.swift */; };
 		BB745EC82B68ED7800BD016A /* HomeAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB745EC72B68ED7800BD016A /* HomeAssembly.swift */; };
+		BB745ECA2B68F5A500BD016A /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB745EC92B68F5A500BD016A /* HomeCell.swift */; };
+		BB745ECD2B68F82F00BD016A /* HomeDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB745ECC2B68F82F00BD016A /* HomeDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		BB745EC22B68EC9E00BD016A /* HomeOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeOutput.swift; sourceTree = "<group>"; };
 		BB745EC42B68ECAD00BD016A /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
 		BB745EC72B68ED7800BD016A /* HomeAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAssembly.swift; sourceTree = "<group>"; };
+		BB745EC92B68F5A500BD016A /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
+		BB745ECC2B68F82F00BD016A /* HomeDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +110,7 @@
 				BB745EBE2B68EC6900BD016A /* HomeViewController.swift */,
 				BB745EC02B68EC7900BD016A /* HomeInput.swift */,
 				BB745EC22B68EC9E00BD016A /* HomeOutput.swift */,
+				BB745EC92B68F5A500BD016A /* HomeCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -123,6 +128,7 @@
 			children = (
 				BB745EBC2B68EC3500BD016A /* Presenter */,
 				BB745EBB2B68EC3100BD016A /* View */,
+				BB745ECB2B68F81D00BD016A /* DataSource */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -133,6 +139,14 @@
 				BB745EC72B68ED7800BD016A /* HomeAssembly.swift */,
 			);
 			path = Assembly;
+			sourceTree = "<group>";
+		};
+		BB745ECB2B68F81D00BD016A /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				BB745ECC2B68F82F00BD016A /* HomeDataSource.swift */,
+			);
+			path = DataSource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -210,8 +224,10 @@
 				BB745EC12B68EC7900BD016A /* HomeInput.swift in Sources */,
 				BB745EC32B68EC9E00BD016A /* HomeOutput.swift in Sources */,
 				BB745EA32B68E78700BD016A /* AppDelegate.swift in Sources */,
+				BB745ECD2B68F82F00BD016A /* HomeDataSource.swift in Sources */,
 				BB745EA52B68E78700BD016A /* SceneDelegate.swift in Sources */,
 				BB745EBA2B68EC2200BD016A /* Extensions.swift in Sources */,
+				BB745ECA2B68F5A500BD016A /* HomeCell.swift in Sources */,
 				BB745EC52B68ECAD00BD016A /* HomePresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

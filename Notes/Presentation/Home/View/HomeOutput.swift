@@ -8,5 +8,5 @@
 import Foundation
 
 protocol HomeOutput: AnyObject {
-    
+    func viewIsReady()
 }
