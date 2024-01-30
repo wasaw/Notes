@@ -9,19 +9,29 @@
 /* Begin PBXBuildFile section */
 		BB745EA32B68E78700BD016A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB745EA22B68E78700BD016A /* AppDelegate.swift */; };
 		BB745EA52B68E78700BD016A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB745EA42B68E78700BD016A /* SceneDelegate.swift */; };
-		BB745EA72B68E78700BD016A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB745EA62B68E78700BD016A /* ViewController.swift */; };
 		BB745EAC2B68E78900BD016A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB745EAB2B68E78900BD016A /* Assets.xcassets */; };
 		BB745EAF2B68E78900BD016A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB745EAD2B68E78900BD016A /* LaunchScreen.storyboard */; };
+		BB745EBA2B68EC2200BD016A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB745EB92B68EC2200BD016A /* Extensions.swift */; };
+		BB745EBF2B68EC6900BD016A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB745EBE2B68EC6900BD016A /* HomeViewController.swift */; };
+		BB745EC12B68EC7900BD016A /* HomeInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB745EC02B68EC7900BD016A /* HomeInput.swift */; };
+		BB745EC32B68EC9E00BD016A /* HomeOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB745EC22B68EC9E00BD016A /* HomeOutput.swift */; };
+		BB745EC52B68ECAD00BD016A /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB745EC42B68ECAD00BD016A /* HomePresenter.swift */; };
+		BB745EC82B68ED7800BD016A /* HomeAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB745EC72B68ED7800BD016A /* HomeAssembly.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		BB745E9F2B68E78700BD016A /* Notes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Notes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB745EA22B68E78700BD016A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BB745EA42B68E78700BD016A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		BB745EA62B68E78700BD016A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		BB745EAB2B68E78900BD016A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BB745EAE2B68E78900BD016A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BB745EB02B68E78900BD016A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BB745EB92B68EC2200BD016A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		BB745EBE2B68EC6900BD016A /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		BB745EC02B68EC7900BD016A /* HomeInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInput.swift; sourceTree = "<group>"; };
+		BB745EC22B68EC9E00BD016A /* HomeOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeOutput.swift; sourceTree = "<group>"; };
+		BB745EC42B68ECAD00BD016A /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
+		BB745EC72B68ED7800BD016A /* HomeAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAssembly.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +64,75 @@
 		BB745EA12B68E78700BD016A /* Notes */ = {
 			isa = PBXGroup;
 			children = (
-				BB745EA22B68E78700BD016A /* AppDelegate.swift */,
-				BB745EA42B68E78700BD016A /* SceneDelegate.swift */,
-				BB745EA62B68E78700BD016A /* ViewController.swift */,
-				BB745EAB2B68E78900BD016A /* Assets.xcassets */,
-				BB745EAD2B68E78900BD016A /* LaunchScreen.storyboard */,
+				BB745EB72B68EBEB00BD016A /* App */,
+				BB745EC62B68ED6800BD016A /* Assembly */,
+				BB745EB62B68EBD300BD016A /* Presentation */,
+				BB745EB82B68EC1600BD016A /* Utils */,
 				BB745EB02B68E78900BD016A /* Info.plist */,
 			);
 			path = Notes;
+			sourceTree = "<group>";
+		};
+		BB745EB62B68EBD300BD016A /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				BB745EBD2B68EC4600BD016A /* Home */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		BB745EB72B68EBEB00BD016A /* App */ = {
+			isa = PBXGroup;
+			children = (
+				BB745EA22B68E78700BD016A /* AppDelegate.swift */,
+				BB745EA42B68E78700BD016A /* SceneDelegate.swift */,
+				BB745EAB2B68E78900BD016A /* Assets.xcassets */,
+				BB745EAD2B68E78900BD016A /* LaunchScreen.storyboard */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		BB745EB82B68EC1600BD016A /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				BB745EB92B68EC2200BD016A /* Extensions.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		BB745EBB2B68EC3100BD016A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BB745EBE2B68EC6900BD016A /* HomeViewController.swift */,
+				BB745EC02B68EC7900BD016A /* HomeInput.swift */,
+				BB745EC22B68EC9E00BD016A /* HomeOutput.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BB745EBC2B68EC3500BD016A /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				BB745EC42B68ECAD00BD016A /* HomePresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		BB745EBD2B68EC4600BD016A /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				BB745EBC2B68EC3500BD016A /* Presenter */,
+				BB745EBB2B68EC3100BD016A /* View */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		BB745EC62B68ED6800BD016A /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				BB745EC72B68ED7800BD016A /* HomeAssembly.swift */,
+			);
+			path = Assembly;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -134,9 +205,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BB745EA72B68E78700BD016A /* ViewController.swift in Sources */,
+				BB745EC82B68ED7800BD016A /* HomeAssembly.swift in Sources */,
+				BB745EBF2B68EC6900BD016A /* HomeViewController.swift in Sources */,
+				BB745EC12B68EC7900BD016A /* HomeInput.swift in Sources */,
+				BB745EC32B68EC9E00BD016A /* HomeOutput.swift in Sources */,
 				BB745EA32B68E78700BD016A /* AppDelegate.swift in Sources */,
 				BB745EA52B68E78700BD016A /* SceneDelegate.swift in Sources */,
+				BB745EBA2B68EC2200BD016A /* Extensions.swift in Sources */,
+				BB745EC52B68ECAD00BD016A /* HomePresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
