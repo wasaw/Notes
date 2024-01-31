@@ -11,13 +11,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     
+    private let coreData = CoreDataService()
+    
     private let homeAssembly = HomeAssembly()
     private let noteAssembly = NoteAssembly()
-    private let notesService = NotesService()
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let scene = (scene as? UIWindowScene) else { return }
-        let honeCoordinator = HomeCoordinator(homeAssembly: homeAssembly, 
+        
+        let notesService = NotesService(coreData: coreData)
+
+        let honeCoordinator = HomeCoordinator(homeAssembly: homeAssembly,
                                               noteAssembly: noteAssembly,
                                               notesService: notesService)
         window = UIWindow(windowScene: scene)

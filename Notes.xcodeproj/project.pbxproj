@@ -29,6 +29,9 @@
 		BB745EEC2B693FC000BD016A /* NotesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB745EEB2B693FC000BD016A /* NotesService.swift */; };
 		BB745EEF2B693FF400BD016A /* NotesServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB745EEE2B693FF400BD016A /* NotesServiceProtocol.swift */; };
 		BB745EF22B6A31EB00BD016A /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB745EF12B6A31EB00BD016A /* Model.swift */; };
+		BB745EF62B6A34A900BD016A /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB745EF52B6A34A900BD016A /* CoreDataService.swift */; };
+		BB745EF82B6A34B900BD016A /* CoreDataServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB745EF72B6A34B900BD016A /* CoreDataServiceProtocol.swift */; };
+		BB745EFE2B6A357800BD016A /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BB745EFC2B6A357800BD016A /* Model.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +59,9 @@
 		BB745EEB2B693FC000BD016A /* NotesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesService.swift; sourceTree = "<group>"; };
 		BB745EEE2B693FF400BD016A /* NotesServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesServiceProtocol.swift; sourceTree = "<group>"; };
 		BB745EF12B6A31EB00BD016A /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		BB745EF52B6A34A900BD016A /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
+		BB745EF72B6A34B900BD016A /* CoreDataServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataServiceProtocol.swift; sourceTree = "<group>"; };
+		BB745EFD2B6A357800BD016A /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,12 +94,14 @@
 		BB745EA12B68E78700BD016A /* Notes */ = {
 			isa = PBXGroup;
 			children = (
+				BB745EFC2B6A357800BD016A /* Model.xcdatamodeld */,
 				BB745EB72B68EBEB00BD016A /* App */,
 				BB745EC62B68ED6800BD016A /* Assembly */,
 				BB745ED92B69158E00BD016A /* Coordinator */,
 				BB745EF02B6A31DF00BD016A /* Model */,
 				BB745EB62B68EBD300BD016A /* Presentation */,
 				BB745EE72B693F7500BD016A /* Service */,
+				BB745EF32B6A347D00BD016A /* Core */,
 				BB745EB82B68EC1600BD016A /* Utils */,
 				BB745EB02B68E78900BD016A /* Info.plist */,
 			);
@@ -235,6 +243,23 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		BB745EF32B6A347D00BD016A /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				BB745EF42B6A349100BD016A /* Core Data */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		BB745EF42B6A349100BD016A /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				BB745EF52B6A34A900BD016A /* CoreDataService.swift */,
+				BB745EF72B6A34B900BD016A /* CoreDataServiceProtocol.swift */,
+			);
+			path = "Core Data";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -310,18 +335,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB745ED42B6914F000BD016A /* NoteInput.swift in Sources */,
+				BB745EFE2B6A357800BD016A /* Model.xcdatamodeld in Sources */,
 				BB745EC82B68ED7800BD016A /* HomeAssembly.swift in Sources */,
 				BB745EDB2B6915A000BD016A /* HomeCoordinator.swift in Sources */,
 				BB745EEF2B693FF400BD016A /* NotesServiceProtocol.swift in Sources */,
 				BB745EBF2B68EC6900BD016A /* HomeViewController.swift in Sources */,
 				BB745ED62B69150100BD016A /* NoteOutput.swift in Sources */,
 				BB745EC12B68EC7900BD016A /* HomeInput.swift in Sources */,
+				BB745EF62B6A34A900BD016A /* CoreDataService.swift in Sources */,
 				BB745EDD2B69161A00BD016A /* HomePresenterOutput.swift in Sources */,
 				BB745ED22B6914C700BD016A /* NoteViewController.swift in Sources */,
 				BB745EC32B68EC9E00BD016A /* HomeOutput.swift in Sources */,
 				BB745EA32B68E78700BD016A /* AppDelegate.swift in Sources */,
 				BB745ECD2B68F82F00BD016A /* HomeDataSource.swift in Sources */,
 				BB745EA52B68E78700BD016A /* SceneDelegate.swift in Sources */,
+				BB745EF82B6A34B900BD016A /* CoreDataServiceProtocol.swift in Sources */,
 				BB745EBA2B68EC2200BD016A /* Extensions.swift in Sources */,
 				BB745EDF2B691B9900BD016A /* NoteAssembly.swift in Sources */,
 				BB745EF22B6A31EB00BD016A /* Model.swift in Sources */,
@@ -551,6 +579,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		BB745EFC2B6A357800BD016A /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				BB745EFD2B6A357800BD016A /* Model.xcdatamodel */,
+			);
+			currentVersion = BB745EFD2B6A357800BD016A /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = BB745E972B68E78700BD016A /* Project object */;
 }

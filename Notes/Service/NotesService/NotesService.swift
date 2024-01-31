@@ -9,18 +9,41 @@ import Foundation
 
 final class NotesService {
     
+// MARK: - Properties
+    
+    private let coreData: CoreDataServiceProtocol
+    
+// MARK: - Lifecycle
+    
+    init(coreData: CoreDataServiceProtocol) {
+        self.coreData = coreData
+    }
 }
 
 // MARK: - NotesServiceProtocol
 
 extension NotesService: NotesServiceProtocol {
     func getNotes(completion: @escaping (Result<[Note], Error>) -> Void) {
-        var note: [Note] = []
-        note.append(Note(id: UUID(), title: "New title", note: "Note"))
-        completion(.success(note))
+        do {
+            let notesManagedObject = try coreData.fetchNotes()
+            let notes: [Note] = notesManagedObject.compactMap { note in
+                guard let id = note.id,
+                      let title = note.title,
+                      let noteText = note.note else { return nil }
+                return Note(id: id, title: title, note: noteText)
+            }
+            completion(.success(notes))
+        } catch {
+            completion(.failure(error))
+        }
     }
     
     func saveNote(_ note: Note) {
-        print("DEBUG: save \(note)")
+        coreData.save { context in
+            let noteManagedObject = NoteManagedObject(context: context)
+            noteManagedObject.id = note.id
+            noteManagedObject.title = note.title
+            noteManagedObject.note = note.note
+        }
     }
 }
