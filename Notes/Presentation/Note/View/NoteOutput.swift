@@ -8,5 +8,5 @@
 import Foundation
 
 protocol NoteOutput: AnyObject {
-    
+    func save(title: String?, note: String)
 }

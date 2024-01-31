@@ -55,6 +55,12 @@ final class NoteViewController: UIViewController {
         configureUI()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        output.save(title: titleTextField.text, note: noteTextView.text)
+    }
+    
 // MARK: - Helpers
     
     private func configureUI() {

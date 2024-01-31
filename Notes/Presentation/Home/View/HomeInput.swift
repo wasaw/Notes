@@ -10,4 +10,5 @@ import Foundation
 protocol HomeInput: AnyObject {
     func setLoading(enable: Bool)
     func showData(_ data: [HomeCell.DisplayData])
+    func showAlert(_ message: String)
 }

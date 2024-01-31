@@ -26,6 +26,9 @@
 		BB745EDB2B6915A000BD016A /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB745EDA2B6915A000BD016A /* HomeCoordinator.swift */; };
 		BB745EDD2B69161A00BD016A /* HomePresenterOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB745EDC2B69161A00BD016A /* HomePresenterOutput.swift */; };
 		BB745EDF2B691B9900BD016A /* NoteAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB745EDE2B691B9900BD016A /* NoteAssembly.swift */; };
+		BB745EEC2B693FC000BD016A /* NotesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB745EEB2B693FC000BD016A /* NotesService.swift */; };
+		BB745EEF2B693FF400BD016A /* NotesServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB745EEE2B693FF400BD016A /* NotesServiceProtocol.swift */; };
+		BB745EF22B6A31EB00BD016A /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB745EF12B6A31EB00BD016A /* Model.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +53,9 @@
 		BB745EDA2B6915A000BD016A /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		BB745EDC2B69161A00BD016A /* HomePresenterOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenterOutput.swift; sourceTree = "<group>"; };
 		BB745EDE2B691B9900BD016A /* NoteAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteAssembly.swift; sourceTree = "<group>"; };
+		BB745EEB2B693FC000BD016A /* NotesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesService.swift; sourceTree = "<group>"; };
+		BB745EEE2B693FF400BD016A /* NotesServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesServiceProtocol.swift; sourceTree = "<group>"; };
+		BB745EF12B6A31EB00BD016A /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,7 +91,9 @@
 				BB745EB72B68EBEB00BD016A /* App */,
 				BB745EC62B68ED6800BD016A /* Assembly */,
 				BB745ED92B69158E00BD016A /* Coordinator */,
+				BB745EF02B6A31DF00BD016A /* Model */,
 				BB745EB62B68EBD300BD016A /* Presentation */,
+				BB745EE72B693F7500BD016A /* Service */,
 				BB745EB82B68EC1600BD016A /* Utils */,
 				BB745EB02B68E78900BD016A /* Info.plist */,
 			);
@@ -202,6 +210,31 @@
 			path = Coordinator;
 			sourceTree = "<group>";
 		};
+		BB745EE72B693F7500BD016A /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				BB745EED2B693FE400BD016A /* NotesService */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		BB745EED2B693FE400BD016A /* NotesService */ = {
+			isa = PBXGroup;
+			children = (
+				BB745EEB2B693FC000BD016A /* NotesService.swift */,
+				BB745EEE2B693FF400BD016A /* NotesServiceProtocol.swift */,
+			);
+			path = NotesService;
+			sourceTree = "<group>";
+		};
+		BB745EF02B6A31DF00BD016A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BB745EF12B6A31EB00BD016A /* Model.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -218,6 +251,8 @@
 			dependencies = (
 			);
 			name = Notes;
+			packageProductDependencies = (
+			);
 			productName = Notes;
 			productReference = BB745E9F2B68E78700BD016A /* Notes.app */;
 			productType = "com.apple.product-type.application";
@@ -246,6 +281,8 @@
 				Base,
 			);
 			mainGroup = BB745E962B68E78700BD016A;
+			packageReferences = (
+			);
 			productRefGroup = BB745EA02B68E78700BD016A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -275,6 +312,7 @@
 				BB745ED42B6914F000BD016A /* NoteInput.swift in Sources */,
 				BB745EC82B68ED7800BD016A /* HomeAssembly.swift in Sources */,
 				BB745EDB2B6915A000BD016A /* HomeCoordinator.swift in Sources */,
+				BB745EEF2B693FF400BD016A /* NotesServiceProtocol.swift in Sources */,
 				BB745EBF2B68EC6900BD016A /* HomeViewController.swift in Sources */,
 				BB745ED62B69150100BD016A /* NoteOutput.swift in Sources */,
 				BB745EC12B68EC7900BD016A /* HomeInput.swift in Sources */,
@@ -286,7 +324,9 @@
 				BB745EA52B68E78700BD016A /* SceneDelegate.swift in Sources */,
 				BB745EBA2B68EC2200BD016A /* Extensions.swift in Sources */,
 				BB745EDF2B691B9900BD016A /* NoteAssembly.swift in Sources */,
+				BB745EF22B6A31EB00BD016A /* Model.swift in Sources */,
 				BB745ECA2B68F5A500BD016A /* HomeCell.swift in Sources */,
+				BB745EEC2B693FC000BD016A /* NotesService.swift in Sources */,
 				BB745ED82B69151400BD016A /* NotePresenter.swift in Sources */,
 				BB745EC52B68ECAD00BD016A /* HomePresenter.swift in Sources */,
 			);

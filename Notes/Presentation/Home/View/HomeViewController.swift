@@ -128,6 +128,12 @@ extension HomeViewController: HomeInput {
     func showData(_ data: [HomeCell.DisplayData]) {
         setupDataSource(data)
     }
+    
+    func showAlert(_ message: String) {
+        let alert = UIAlertController(title: "Внимание", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default))
+        present(alert, animated: true)
+    }
 }
 
 // MARK: - UITableViewDelegate
