@@ -46,4 +46,8 @@ extension NotesService: NotesServiceProtocol {
             noteManagedObject.note = note.note
         }
     }
+    
+    func deleteNote(_ id: UUID, comletion: @escaping (Result<Void, Error>) -> Void) {
+        coreData.delete(id, completion: comletion)
+    }
 }

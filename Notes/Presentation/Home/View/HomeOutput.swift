@@ -11,4 +11,5 @@ protocol HomeOutput: AnyObject {
     func viewIsReady()
     func createNewNote()
     func showNote(at index: Int)
+    func delete(at index: Int)
 }

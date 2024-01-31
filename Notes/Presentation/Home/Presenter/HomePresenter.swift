@@ -53,4 +53,24 @@ extension HomePresenter: HomeOutput {
             moduleOutput.openNote(with: notes[index])
         }
     }
+    
+    func delete(at index: Int) {
+        if notes.indices.contains(index) {
+            notesService.deleteNote(notes[index].id) { [weak self] result in
+                switch result {
+                case .success:
+                    self?.notes.remove(at: index)
+                    guard let notes = self?.notes else { return }
+                    let displayData: [HomeCell.DisplayData] = notes.compactMap { note in
+                        return HomeCell.DisplayData(title: note.title, note: note.note)
+                    }
+                    DispatchQueue.main.async {
+                        self?.input?.showData(displayData)
+                    }
+                case .failure(let error):
+                    self?.input?.showAlert(error.localizedDescription)
+                }
+            }
+        }
+    }
 }

@@ -47,4 +47,20 @@ extension CoreDataService: CoreDataServiceProtocol {
             }
         }
     }
+    
+    func delete(_ id: UUID, completion: @escaping (Result<Void, Error>) -> Void) {
+        let backgroundContext = persistentContainer.newBackgroundContext()
+        backgroundContext.perform {
+            do {
+                let fetchRequest = NoteManagedObject.fetchRequest()
+                fetchRequest.predicate = NSPredicate(format: "id == %@", id as CVarArg)
+                guard let note = try backgroundContext.fetch(fetchRequest).first else { return }
+                backgroundContext.delete(note)
+                try backgroundContext.save()
+                completion(.success(()))
+            } catch {
+                completion(.failure(error))
+            }
+        }
+    }
 }

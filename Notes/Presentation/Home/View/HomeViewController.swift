@@ -80,6 +80,7 @@ final class HomeViewController: UIViewController {
         tableView.register(HomeCell.self, forCellReuseIdentifier: HomeCell.reuseIdentifire)
         tableView.delegate = self
         tableView.dataSource = dataSource
+        dataSource.delegate = self
         tableView.anchor(leading: view.leadingAnchor,
                          top: titleLabel.bottomAnchor,
                          trailing: view.trailingAnchor,
@@ -146,5 +147,13 @@ extension HomeViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         Constants.cellHeight
+    }
+}
+
+// MARK: - HomeDataSourceDelegate
+
+extension HomeViewController: HomeDataSourceDelegate {
+    func deleteNote(at index: Int) {
+        output.delete(at: index)
     }
 }
