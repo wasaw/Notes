@@ -15,19 +15,19 @@ final class HomePresenter {
     private let notesService: NotesServiceProtocol
     private let moduleOutput: HomePresenterOutput
     private var notes: [Note] = []
+    private let notification = NotificationCenter.default
     
 // MARK: - Lifecycle
     
     init(moduleOutput: HomePresenterOutput, notesService: NotesServiceProtocol) {
         self.moduleOutput = moduleOutput
         self.notesService = notesService
+        notification.addObserver(self, selector: #selector(updateNotes), name: .update, object: nil)
     }
-}
-
-// MARK: - HomeOutput
-
-extension HomePresenter: HomeOutput {
-    func viewIsReady() {
+    
+// MARK: - Helpers
+    
+    private func loadNote() {
         input?.setLoading(enable: true)
         notesService.getNotes { [weak self] result in
             switch result {
@@ -44,6 +44,38 @@ extension HomePresenter: HomeOutput {
         }
     }
     
+    private func deleteNote(_ index: Int) {
+        notesService.deleteNote(notes[index].id) { [weak self] result in
+            switch result {
+            case .success:
+                self?.notes.remove(at: index)
+                guard let notes = self?.notes else { return }
+                let displayData: [HomeCell.DisplayData] = notes.compactMap { note in
+                    return HomeCell.DisplayData(title: note.title, note: note.note)
+                }
+                DispatchQueue.main.async {
+                    self?.input?.showData(displayData)
+                }
+            case .failure(let error):
+                self?.input?.showAlert(error.localizedDescription)
+            }
+        }
+    }
+    
+// MARK: - Selecters
+    
+    @objc private func updateNotes() {
+        loadNote()
+    }
+}
+
+// MARK: - HomeOutput
+
+extension HomePresenter: HomeOutput {
+    func viewIsReady() {
+        loadNote()
+    }
+    
     func createNewNote() {
         moduleOutput.openNote(with: nil)
     }
@@ -56,21 +88,7 @@ extension HomePresenter: HomeOutput {
     
     func delete(at index: Int) {
         if notes.indices.contains(index) {
-            notesService.deleteNote(notes[index].id) { [weak self] result in
-                switch result {
-                case .success:
-                    self?.notes.remove(at: index)
-                    guard let notes = self?.notes else { return }
-                    let displayData: [HomeCell.DisplayData] = notes.compactMap { note in
-                        return HomeCell.DisplayData(title: note.title, note: note.note)
-                    }
-                    DispatchQueue.main.async {
-                        self?.input?.showData(displayData)
-                    }
-                case .failure(let error):
-                    self?.input?.showAlert(error.localizedDescription)
-                }
-            }
+            deleteNote(index)
         }
     }
 }

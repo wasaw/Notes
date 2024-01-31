@@ -94,6 +94,12 @@ extension NoteViewController: NoteInput {
         titleTextField.text = displayData.title
         noteTextView.text = displayData.note
     }
+    
+    func showAlert(_ message: String) {
+        let alert = UIAlertController(title: "Внимание", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default))
+        present(alert, animated: true)
+    }
 }
 
 // MARK: - UITextView

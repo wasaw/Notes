@@ -9,4 +9,5 @@ import Foundation
 
 protocol NoteInput: AnyObject {
     func showNote(_ displayData: Note)
+    func showAlert(_ message: String)
 }

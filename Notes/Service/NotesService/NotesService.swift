@@ -50,4 +50,8 @@ extension NotesService: NotesServiceProtocol {
     func deleteNote(_ id: UUID, comletion: @escaping (Result<Void, Error>) -> Void) {
         coreData.delete(id, completion: comletion)
     }
+    
+    func updateNote(_ note: Note, comletion: @escaping (Result<Void, Error>) -> Void) {
+        coreData.update(note, completion: comletion)
+    }
 }

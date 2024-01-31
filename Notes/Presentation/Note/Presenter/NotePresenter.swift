@@ -14,12 +14,30 @@ final class NotePresenter {
     weak var input: NoteInput?
     private let note: Note?
     private let notesService: NotesServiceProtocol
+    private let notification = NotificationCenter.default
     
 // MARK: - Lifecycle
     
     init(note: Note?, notesService: NotesServiceProtocol) {
         self.note = note
         self.notesService = notesService
+    }
+    
+// MARK: - Helpers
+    
+    private func updateNote(_ note: Note) {
+        notesService.updateNote(note) { [weak self] result in
+            switch result {
+            case .success():
+                DispatchQueue.main.async {
+                    self?.notification.post(name: .update, object: nil)
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self?.input?.showAlert(error.localizedDescription)
+                }
+            }
+        }
     }
 }
 
@@ -35,14 +53,16 @@ extension NotePresenter: NoteOutput {
     
     func save(title: String?, note: String) {
         guard let title = title,
-              title != "",
-              (title != self.note?.title && note != self.note?.note) else {
+              title != "" else {
             if note != "Содержание" {
                 notesService.saveNote(Note(id: UUID(), title: "Новая заметка", note: note))
             }
             return
         }
-        
-        notesService.saveNote(Note(id: UUID(), title: title, note: note))
+        guard let id = self.note?.id else {
+            notesService.saveNote(Note(id: UUID(), title: title, note: note))
+            return
+        }
+        updateNote(Note(id: id, title: title, note: note))
     }
 }

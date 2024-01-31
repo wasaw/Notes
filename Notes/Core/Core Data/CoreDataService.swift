@@ -63,4 +63,21 @@ extension CoreDataService: CoreDataServiceProtocol {
             }
         }
     }
+    
+    func update(_ note: Note, completion: @escaping (Result<Void, Error>) -> Void) {
+        let backgroundContext = persistentContainer.newBackgroundContext()
+        backgroundContext.perform {
+            do {
+                let fetchRequest = NoteManagedObject.fetchRequest()
+                fetchRequest.predicate = NSPredicate(format: "id == %@", note.id as CVarArg)
+                guard let result = try backgroundContext.fetch(fetchRequest).first else { return }
+                result.title = note.title
+                result.note = note.note
+                try backgroundContext.save()
+                completion(.success(()))
+            } catch {
+                completion(.failure(error))
+            }
+        }
+    }
 }

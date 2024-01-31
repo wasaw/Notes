@@ -67,3 +67,9 @@ extension UIView {
         }
     }
 }
+
+// MARK: - NotificationName
+
+extension Notification.Name {
+    static let update = Notification.Name("update")
+}
