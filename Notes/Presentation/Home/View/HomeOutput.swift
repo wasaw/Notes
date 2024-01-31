@@ -10,4 +10,5 @@ import Foundation
 protocol HomeOutput: AnyObject {
     func viewIsReady()
     func createNewNote()
+    func showNote(at index: Int)
 }

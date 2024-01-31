@@ -8,8 +8,8 @@
 import UIKit
 
 final class NoteAssembly {
-    func makeNoteModule(notesService: NotesServiceProtocol) -> UIViewController {
-        let presenter = NotePresenter(notesService: notesService)
+    func makeNoteModule(note: Note?, notesService: NotesServiceProtocol) -> UIViewController {
+        let presenter = NotePresenter(note: note, notesService: notesService)
         let viewController = NoteViewController(output: presenter)
         presenter.input = viewController
         return viewController

@@ -8,5 +8,5 @@
 import Foundation
 
 protocol NoteInput: AnyObject {
-    
+    func showNote(_ displayData: Note)
 }

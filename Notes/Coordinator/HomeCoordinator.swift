@@ -35,8 +35,8 @@ final class HomeCoordinator {
         return nav
     }
     
-    private func showAddNote() {
-        let viewContoller = noteAssembly.makeNoteModule(notesService: notesService)
+    private func showNote(_ note: Note?) {
+        let viewContoller = noteAssembly.makeNoteModule(note: note, notesService: notesService)
         navigation?.pushViewController(viewContoller, animated: true)
     }
 }
@@ -44,7 +44,7 @@ final class HomeCoordinator {
 // MARK: - HomePresenterOutput
 
 extension HomeCoordinator: HomePresenterOutput {
-    func openAddNote() {
-        showAddNote()
+    func openNote(with note: Note?) {
+        showNote(note)
     }
 }

@@ -53,6 +53,7 @@ final class NoteViewController: UIViewController {
         super.viewDidLoad()
         
         configureUI()
+        output.viewIsReady()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -89,7 +90,10 @@ final class NoteViewController: UIViewController {
 // MARK: - NoteInput
 
 extension NoteViewController: NoteInput {
-    
+    func showNote(_ displayData: Note) {
+        titleTextField.text = displayData.title
+        noteTextView.text = displayData.note
+    }
 }
 
 // MARK: - UITextView

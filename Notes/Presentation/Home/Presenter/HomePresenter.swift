@@ -14,6 +14,7 @@ final class HomePresenter {
     weak var input: HomeInput?
     private let notesService: NotesServiceProtocol
     private let moduleOutput: HomePresenterOutput
+    private var notes: [Note] = []
     
 // MARK: - Lifecycle
     
@@ -31,6 +32,7 @@ extension HomePresenter: HomeOutput {
         notesService.getNotes { [weak self] result in
             switch result {
             case .success(let notes):
+                self?.notes = notes
                 let displayData: [HomeCell.DisplayData] = notes.compactMap { note in
                     return HomeCell.DisplayData(title: note.title, note: note.note)
                 }
@@ -43,6 +45,12 @@ extension HomePresenter: HomeOutput {
     }
     
     func createNewNote() {
-        moduleOutput.openAddNote()
+        moduleOutput.openNote(with: nil)
+    }
+    
+    func showNote(at index: Int) {
+        if notes.indices.contains(index) {
+            moduleOutput.openNote(with: notes[index])
+        }
     }
 }

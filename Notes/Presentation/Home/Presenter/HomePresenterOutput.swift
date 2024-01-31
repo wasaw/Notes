@@ -8,5 +8,5 @@
 import Foundation
 
 protocol HomePresenterOutput: AnyObject {
-    func openAddNote()
+    func openNote(with note: Note?)
 }

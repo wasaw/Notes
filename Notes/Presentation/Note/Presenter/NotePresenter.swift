@@ -12,11 +12,13 @@ final class NotePresenter {
 // MARK: - Properties
     
     weak var input: NoteInput?
+    private let note: Note?
     private let notesService: NotesServiceProtocol
     
 // MARK: - Lifecycle
     
-    init(notesService: NotesServiceProtocol) {
+    init(note: Note?, notesService: NotesServiceProtocol) {
+        self.note = note
         self.notesService = notesService
     }
 }
@@ -24,12 +26,23 @@ final class NotePresenter {
 // MARK: - NoteOutput
 
 extension NotePresenter: NoteOutput {
-    func save(title: String?, note: String) {
-        guard let title = title,
-              title != "" else {
-            notesService.saveNote(Note(id: UUID(), title: "Новая заметка", note: note))
+    func viewIsReady() {
+        guard let note = note else {
             return
         }
+        input?.showNote(note)
+    }
+    
+    func save(title: String?, note: String) {
+        guard let title = title,
+              title != "",
+              (title != self.note?.title && note != self.note?.note) else {
+            if note != "Содержание" {
+                notesService.saveNote(Note(id: UUID(), title: "Новая заметка", note: note))
+            }
+            return
+        }
+        
         notesService.saveNote(Note(id: UUID(), title: title, note: note))
     }
 }
