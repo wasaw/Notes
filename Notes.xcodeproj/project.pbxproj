@@ -32,6 +32,7 @@
 		BB745EF62B6A34A900BD016A /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB745EF52B6A34A900BD016A /* CoreDataService.swift */; };
 		BB745EF82B6A34B900BD016A /* CoreDataServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB745EF72B6A34B900BD016A /* CoreDataServiceProtocol.swift */; };
 		BB745EFE2B6A357800BD016A /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BB745EFC2B6A357800BD016A /* Model.xcdatamodeld */; };
+		BB745F032B6B99E200BD016A /* CustomUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB745F022B6B99E200BD016A /* CustomUserDefaults.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,7 @@
 		BB745EF52B6A34A900BD016A /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		BB745EF72B6A34B900BD016A /* CoreDataServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataServiceProtocol.swift; sourceTree = "<group>"; };
 		BB745EFD2B6A357800BD016A /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		BB745F022B6B99E200BD016A /* CustomUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUserDefaults.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				BB745EB92B68EC2200BD016A /* Extensions.swift */,
+				BB745F022B6B99E200BD016A /* CustomUserDefaults.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -355,6 +358,7 @@
 				BB745EF22B6A31EB00BD016A /* Model.swift in Sources */,
 				BB745ECA2B68F5A500BD016A /* HomeCell.swift in Sources */,
 				BB745EEC2B693FC000BD016A /* NotesService.swift in Sources */,
+				BB745F032B6B99E200BD016A /* CustomUserDefaults.swift in Sources */,
 				BB745ED82B69151400BD016A /* NotePresenter.swift in Sources */,
 				BB745EC52B68ECAD00BD016A /* HomePresenter.swift in Sources */,
 			);

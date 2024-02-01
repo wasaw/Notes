@@ -13,6 +13,7 @@ final class NotesService {
     
     private let coreData: CoreDataServiceProtocol
     private let notification = NotificationCenter.default
+    private let userDefaults = CustomUserDefaults.shared
     
 // MARK: - Lifecycle
     
@@ -25,10 +26,10 @@ final class NotesService {
 
 extension NotesService: NotesServiceProtocol {
     func isFirstLaunce() {
-        guard UserDefaults.standard.value(forKey: "isNotFirst") == nil else {
+        guard userDefaults.getValue(for: .isNotFirstLaunce) == nil else {
             return
         }
-        UserDefaults.standard.setValue(true, forKey: "isNotFirst")
+        userDefaults.setValue(true, for: .isNotFirstLaunce)
         let notes = [Note(id: UUID(), title: "Набросок", note: "Первый шаблон новой заметки."),
                      Note(id: UUID(), title: "Выбор поездки", note: "Предложений нет."),
                      Note(id: UUID(), title: "План на лето", note: "Поход с палатками.")]
