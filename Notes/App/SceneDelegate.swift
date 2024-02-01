@@ -20,6 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let scene = (scene as? UIWindowScene) else { return }
         
         let notesService = NotesService(coreData: coreData)
+        notesService.isFirstLaunce()
 
         let honeCoordinator = HomeCoordinator(homeAssembly: homeAssembly,
                                               noteAssembly: noteAssembly,

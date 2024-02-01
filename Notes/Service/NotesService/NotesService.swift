@@ -23,6 +23,19 @@ final class NotesService {
 // MARK: - NotesServiceProtocol
 
 extension NotesService: NotesServiceProtocol {
+    func isFirstLaunce() {
+        guard UserDefaults.standard.value(forKey: "isNotFirst") == nil else {
+            return
+        }
+        UserDefaults.standard.setValue(true, forKey: "isNotFirst")
+        let notes = [Note(id: UUID(), title: "Набросок", note: "Первый шаблон новой заметки."),
+                     Note(id: UUID(), title: "Выбор поездки", note: ""),
+                     Note(id: UUID(), title: "План на лето", note: "Поход с палатками.")]
+        notes.forEach { note in
+            saveNote(note)
+        }
+    }
+    
     func getNotes(completion: @escaping (Result<[Note], Error>) -> Void) {
         do {
             let notesManagedObject = try coreData.fetchNotes()

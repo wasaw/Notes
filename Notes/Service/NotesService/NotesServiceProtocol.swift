@@ -8,6 +8,7 @@
 import Foundation
 
 protocol NotesServiceProtocol: AnyObject {
+    func isFirstLaunce()
     func getNotes(completion: @escaping (Result<[Note], Error>) -> Void)
     func saveNote(_ note: Note)
     func deleteNote(_ id: UUID, comletion: @escaping (Result<Void, Error>) -> Void)
