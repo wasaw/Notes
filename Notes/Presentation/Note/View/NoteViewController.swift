@@ -12,6 +12,10 @@ private enum Constants {
     static let paddingTop: CGFloat = 12
     static let titleTextFieldHeight: CGFloat = 55
     static let noteViewPaddingTop: CGFloat = 25
+    static let fontSizeSliderPaddingBottom: CGFloat = 20
+    static let fontSizeSliderWidth: CGFloat = 250
+    static let minimunSliderValue: Float = 15
+    static let maximumSliderValue: Float = 30
 }
 
 final class NoteViewController: UIViewController {
@@ -35,6 +39,31 @@ final class NoteViewController: UIViewController {
         textView.textColor = .white
         textView.delegate = self
         return textView
+    }()
+    private lazy var fontSizeSlider: UISlider = {
+        let slider = UISlider()
+        slider.minimumValue = Constants.minimunSliderValue
+        slider.maximumValue = Constants.maximumSliderValue
+        slider.value = 21
+        slider.addTarget(self, action: #selector(sliderValueChanged), for: .valueChanged)
+        return slider
+    }()
+    private lazy var minimumValueLabel: UILabel = {
+        let label = UILabel()
+        let size = Int(Constants.minimunSliderValue)
+        label.text = String(size)
+        return label
+    }()
+    private lazy var maximumValueLabel: UILabel = {
+        let label = UILabel()
+        let size = Int(Constants.maximumSliderValue)
+        label.text = String(size)
+        return label
+    }()
+    private lazy var sliderTitleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Установите размер шрифта"
+        return label
     }()
     
 // MARK: - Lifecycle
@@ -83,7 +112,34 @@ final class NoteViewController: UIViewController {
                              paddingTop: Constants.noteViewPaddingTop,
                              paddingTrailing: -Constants.horizontalPadding)
         noteTextView.backgroundColor = .background
+        
+        configureFontSizeSlider()
         view.backgroundColor = .background
+    }
+    
+    private func configureFontSizeSlider() {
+        view.addSubview(fontSizeSlider)
+        fontSizeSlider.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        fontSizeSlider.anchor(bottom: view.safeAreaLayoutGuide.bottomAnchor,
+                              paddingBottom: -Constants.fontSizeSliderPaddingBottom,
+                              width: Constants.fontSizeSliderWidth)
+        
+        view.addSubview(sliderTitleLabel)
+        sliderTitleLabel.anchor(leading: fontSizeSlider.leadingAnchor,
+                                trailing: fontSizeSlider.trailingAnchor,
+                                bottom: fontSizeSlider.topAnchor)
+        view.addSubview(minimumValueLabel)
+        minimumValueLabel.anchor(leading: fontSizeSlider.leadingAnchor, top: fontSizeSlider.bottomAnchor)
+        view.addSubview(maximumValueLabel)
+        maximumValueLabel.anchor(top: fontSizeSlider.bottomAnchor, trailing: fontSizeSlider.trailingAnchor)
+    }
+    
+// MARK: - Selectors
+    
+    @objc private func sliderValueChanged() {
+        let fontSize = fontSizeSlider.value
+        noteTextView.font = UIFont.systemFont(ofSize: CGFloat(fontSize))
+        output.saveFontSize(fontSize)
     }
 }
 
@@ -99,6 +155,11 @@ extension NoteViewController: NoteInput {
         let alert = UIAlertController(title: "Внимание", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default))
         present(alert, animated: true)
+    }
+    
+    func setFontSize(_ size: Float) {
+        noteTextView.font = UIFont.systemFont(ofSize: CGFloat(size))
+        fontSizeSlider.value = size
     }
 }
 

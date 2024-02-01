@@ -12,6 +12,7 @@ final class NotesService {
 // MARK: - Properties
     
     private let coreData: CoreDataServiceProtocol
+    private let notification = NotificationCenter.default
     
 // MARK: - Lifecycle
     
@@ -29,7 +30,7 @@ extension NotesService: NotesServiceProtocol {
         }
         UserDefaults.standard.setValue(true, forKey: "isNotFirst")
         let notes = [Note(id: UUID(), title: "Набросок", note: "Первый шаблон новой заметки."),
-                     Note(id: UUID(), title: "Выбор поездки", note: ""),
+                     Note(id: UUID(), title: "Выбор поездки", note: "Предложений нет."),
                      Note(id: UUID(), title: "План на лето", note: "Поход с палатками.")]
         notes.forEach { note in
             saveNote(note)
@@ -57,6 +58,9 @@ extension NotesService: NotesServiceProtocol {
             noteManagedObject.id = note.id
             noteManagedObject.title = note.title
             noteManagedObject.note = note.note
+        }
+        DispatchQueue.main.async {
+            self.notification.post(name: .update, object: nil)
         }
     }
     

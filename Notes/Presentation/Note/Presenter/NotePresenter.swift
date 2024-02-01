@@ -15,6 +15,7 @@ final class NotePresenter {
     private let note: Note?
     private let notesService: NotesServiceProtocol
     private let notification = NotificationCenter.default
+    private let userDefault = UserDefaults.standard
     
 // MARK: - Lifecycle
     
@@ -39,12 +40,18 @@ final class NotePresenter {
             }
         }
     }
+    
+    private func updateFontSize() {
+        guard let fontSize = userDefault.value(forKey: "fontSize") as? Float else { return }
+        input?.setFontSize(fontSize)
+    }
 }
 
 // MARK: - NoteOutput
 
 extension NotePresenter: NoteOutput {
     func viewIsReady() {
+        updateFontSize()
         guard let note = note else {
             return
         }
@@ -64,5 +71,9 @@ extension NotePresenter: NoteOutput {
             return
         }
         updateNote(Note(id: id, title: title, note: note))
+    }
+    
+    func saveFontSize(_ size: Float) {
+        userDefault.setValue(size.rounded(), forKey: "fontSize")
     }
 }

@@ -10,4 +10,5 @@ import Foundation
 protocol NoteOutput: AnyObject {
     func viewIsReady()
     func save(title: String?, note: String)
+    func saveFontSize(_ size: Float)
 }
