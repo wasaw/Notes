@@ -13,9 +13,11 @@ private enum Constants {
     static let titleTextFieldHeight: CGFloat = 55
     static let noteViewPaddingTop: CGFloat = 25
     static let fontSizeSliderPaddingBottom: CGFloat = 20
-    static let fontSizeSliderWidth: CGFloat = 250
+    static let attributesToolsWidth: CGFloat = 250
     static let minimunSliderValue: Float = 15
     static let maximumSliderValue: Float = 30
+    static let toolBarPaddingBottom: CGFloat = 10
+    static let toolBarHeight: CGFloat = 45
 }
 
 final class NoteViewController: UIViewController {
@@ -40,6 +42,7 @@ final class NoteViewController: UIViewController {
         textView.delegate = self
         return textView
     }()
+    
     private lazy var fontSizeSlider: UISlider = {
         let slider = UISlider()
         slider.minimumValue = Constants.minimunSliderValue
@@ -64,6 +67,17 @@ final class NoteViewController: UIViewController {
         let label = UILabel()
         label.text = "Установите размер шрифта"
         return label
+    }()
+    
+    private lazy var selectFontStyle: UIToolbar = {
+        let toolBar = UIToolbar(frame:CGRect(x: 0, y: 0, width: 250, height: 45))
+        let italicButton = UIBarButtonItem(title: "Курсив", style: .plain, target: self, action: #selector(italicButtonTapped))
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        let boldButton = UIBarButtonItem(title: "Жирный", style: .plain, target: self, action: #selector(boldButtonTapped))
+        toolBar.items = [italicButton, flexibleSpace, boldButton]
+        toolBar.tintColor = .black
+        toolBar.barTintColor = .background
+        return toolBar
     }()
     
 // MARK: - Lifecycle
@@ -114,6 +128,7 @@ final class NoteViewController: UIViewController {
         noteTextView.backgroundColor = .background
         
         configureFontSizeSlider()
+        configureFontStyleToolbar()
         view.backgroundColor = .background
     }
     
@@ -122,7 +137,7 @@ final class NoteViewController: UIViewController {
         fontSizeSlider.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         fontSizeSlider.anchor(bottom: view.safeAreaLayoutGuide.bottomAnchor,
                               paddingBottom: -Constants.fontSizeSliderPaddingBottom,
-                              width: Constants.fontSizeSliderWidth)
+                              width: Constants.attributesToolsWidth)
         
         view.addSubview(sliderTitleLabel)
         sliderTitleLabel.anchor(leading: fontSizeSlider.leadingAnchor,
@@ -134,12 +149,43 @@ final class NoteViewController: UIViewController {
         maximumValueLabel.anchor(top: fontSizeSlider.bottomAnchor, trailing: fontSizeSlider.trailingAnchor)
     }
     
+    private func configureFontStyleToolbar() {
+        view.addSubview(selectFontStyle)
+        selectFontStyle.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        selectFontStyle.anchor(bottom: sliderTitleLabel.topAnchor,
+                               paddingBottom: -Constants.toolBarPaddingBottom,
+                               width: Constants.attributesToolsWidth,
+                               height: Constants.toolBarHeight)
+    }
+    
+    private func changeSelectedText(_ font: UIFont) {
+        let range = noteTextView.selectedRange
+        let string = NSMutableAttributedString(attributedString:
+                                                    noteTextView.attributedText)
+        let attributes = [NSAttributedString.Key.font: font]
+        string.addAttributes(attributes, range: noteTextView.selectedRange)
+        noteTextView.attributedText = string
+        noteTextView.selectedRange = range
+    }
+    
 // MARK: - Selectors
     
     @objc private func sliderValueChanged() {
         let fontSize = fontSizeSlider.value
         noteTextView.font = UIFont.systemFont(ofSize: CGFloat(fontSize))
         output.saveFontSize(fontSize)
+    }
+    
+    @objc private func italicButtonTapped() {
+        let size = CGFloat(fontSizeSlider.value)
+        let font = UIFont.italicSystemFont(ofSize: size)
+        changeSelectedText(font)
+    }
+    
+    @objc private func boldButtonTapped() {
+        let size = CGFloat(fontSizeSlider.value)
+        let font = UIFont.boldSystemFont(ofSize: size)
+        changeSelectedText(font)
     }
 }
 
@@ -163,7 +209,7 @@ extension NoteViewController: NoteInput {
     }
 }
 
-// MARK: - UITextView
+// MARK: - UITextViewDelegate
 
 extension NoteViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
