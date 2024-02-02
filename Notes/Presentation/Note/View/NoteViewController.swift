@@ -38,7 +38,7 @@ final class NoteViewController: UIViewController {
         textView.isScrollEnabled = false
         textView.sizeToFit()
         textView.font = UIFont.systemFont(ofSize: 21)
-        textView.textColor = .white
+        textView.textColor = .textColor
         textView.delegate = self
         return textView
     }()

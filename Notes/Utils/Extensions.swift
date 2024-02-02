@@ -30,6 +30,16 @@ extension UIColor {
             UIColor(red: 183/255, green: 183/255, blue: 164/255, alpha: 1)
         }
     }
+    static let textColor = UIColor { traitCollection in
+        switch traitCollection.userInterfaceStyle {
+        case .light, .unspecified:
+            UIColor(red: 255/255, green: 232/255, blue: 214/255, alpha: 1)
+        case .dark:
+            UIColor(red: 255/255, green: 232/255, blue: 214/255, alpha: 1)
+        @unknown default:
+            UIColor(red: 255/255, green: 232/255, blue: 214/255, alpha: 1)
+        }
+    }
 }
 
 // MARK: - UIView
