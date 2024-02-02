@@ -79,6 +79,12 @@ final class NoteViewController: UIViewController {
         toolBar.barTintColor = .background
         return toolBar
     }()
+    private let notification = NotificationCenter.default
+    private var fontSizeSliderConstraint: NSLayoutConstraint?
+    private lazy var doneButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(handleDoneButton))
+        return button
+    }()
     
 // MARK: - Lifecycle
     
@@ -96,6 +102,7 @@ final class NoteViewController: UIViewController {
         super.viewDidLoad()
         
         configureUI()
+        configureForKeyboard()
         output.viewIsReady()
     }
     
@@ -135,9 +142,10 @@ final class NoteViewController: UIViewController {
     private func configureFontSizeSlider() {
         view.addSubview(fontSizeSlider)
         fontSizeSlider.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        fontSizeSlider.anchor(bottom: view.safeAreaLayoutGuide.bottomAnchor,
-                              paddingBottom: -Constants.fontSizeSliderPaddingBottom,
-                              width: Constants.attributesToolsWidth)
+        fontSizeSlider.anchor(width: Constants.attributesToolsWidth)
+        fontSizeSliderConstraint = fontSizeSlider.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, 
+                                                                          constant: -Constants.fontSizeSliderPaddingBottom)
+        fontSizeSliderConstraint?.isActive = true
         
         view.addSubview(sliderTitleLabel)
         sliderTitleLabel.anchor(leading: fontSizeSlider.leadingAnchor,
@@ -156,6 +164,13 @@ final class NoteViewController: UIViewController {
                                paddingBottom: -Constants.toolBarPaddingBottom,
                                width: Constants.attributesToolsWidth,
                                height: Constants.toolBarHeight)
+    }
+    
+    private func configureForKeyboard() {
+        notification.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        notification.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        navigationItem.rightBarButtonItem = doneButton
+        doneButton.isHidden = true
     }
     
     private func changeSelectedText(_ font: UIFont) {
@@ -186,6 +201,22 @@ final class NoteViewController: UIViewController {
         let size = CGFloat(fontSizeSlider.value)
         let font = UIFont.boldSystemFont(ofSize: size)
         changeSelectedText(font)
+    }
+    
+    @objc private func keyboardWillShow(_ notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            fontSizeSliderConstraint?.constant = -keyboardSize.height
+            doneButton.isHidden = false
+        }
+    }
+    
+    @objc private func keyboardWillHide() {
+        fontSizeSliderConstraint?.constant = -Constants.fontSizeSliderPaddingBottom
+        doneButton.isHidden = true
+    }
+    
+    @objc private func handleDoneButton() {
+        view.endEditing(true)
     }
 }
 
