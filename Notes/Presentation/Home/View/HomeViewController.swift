@@ -40,6 +40,12 @@ final class HomeViewController: UIViewController {
         button.addTarget(self, action: #selector(handleAddButton), for: .touchUpInside)
         return button
     }()
+    private lazy var fontButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.setImage(UIImage(named: "font"), for: .normal)
+        button.addTarget(self, action: #selector(handleFontButton), for: .touchUpInside)
+        return button
+    }()
     
 // MARK: - Lifecycle
     
@@ -72,6 +78,7 @@ final class HomeViewController: UIViewController {
                           paddingTrailing: -Constants.paddingHorizontal)
         configureTable()
         configureAddButton()
+        configureFontButton()
         view.backgroundColor = .background
     }
     
@@ -103,6 +110,16 @@ final class HomeViewController: UIViewController {
                          width: Constants.buttonDimensions,
                          height: Constants.buttonDimensions)
     }
+    
+    private func configureFontButton() {
+        view.addSubview(fontButton)
+        fontButton.anchor(leading: view.leadingAnchor,
+                          bottom: view.safeAreaLayoutGuide.bottomAnchor,
+                          paddingLeading: Constants.buttonPadding,
+                          paddingBottom: -Constants.buttonPadding,
+                          width: Constants.buttonDimensions,
+                          height: Constants.buttonDimensions)
+    }
         
     private func setupDataSource(_ items: [HomeCell.DisplayData]) {
         var snapshot = dataSource.snapshot()
@@ -116,6 +133,12 @@ final class HomeViewController: UIViewController {
     
     @objc private func handleAddButton() {
         output.createNewNote()
+    }
+    
+    @objc private func handleFontButton() {
+        let fonts = UIFont.familyNames
+        guard let font = fonts.randomElement() else { return }
+        titleLabel.font = UIFont(name: font, size: 37)
     }
 }
 
